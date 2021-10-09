@@ -1,0 +1,12 @@
+{
+  "defaultState": {
+    "currPlayer": "white",
+    "gameState": [
+      {
+        "pieceType": "pawn",
+        "color": "white",
+        "position": "a0"
+      }
+    ]
+  }
+}
