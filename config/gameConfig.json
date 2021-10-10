@@ -1,12 +1,44 @@
 {
   "defaultState": {
     "currPlayer": "white",
-    "gameState": [
-      {
-        "pieceType": "pawn",
-        "color": "white",
-        "position": "a0"
+    "positions": {
+      "pawn": {
+        "white": ["a2", "b2", "c2", "d2", "e2", "f2", "g2", "h2"],
+        "black": ["a7", "b7", "c7", "d7", "e7", "f7", "g7", "h7"]
+      },
+      "king": { "white": ["d1"], "black": ["d8"] },
+      "queen": { "white": ["e1"], "black": ["e8"] },
+      "bishop": { "white": ["c1", "f1"], "black": ["c8", "f8"] },
+      "knight": { "white": ["b1", "g1"], "black": ["b8", "g8"] },
+      "rook": { "white": ["a1", "h1"], "black": ["a8", "h8"] }
+    }
+  },
+
+  "boardConfig": {
+    "minRow": 1,
+    "maxRow": 8,
+    "minCol": "a",
+    "maxCol": "h"
+  },
+
+  "moveRules": {
+    "pawn": {
+      "normalMoves": { "direction": ["Forward_Vertical"], "maxMoves": { "default": 1 } },
+      "attackMoves": { "direction": ["Forward_Left", "Forward_Right"], "maxMoves": { "default": 1 } },
+      "specialMoves": {
+        "condition": {
+          "conditions": [
+            { "currRow": 2, "color": "white" },
+            { "currRow": 7, "color": "black" }
+          ],
+          "operand": "OR"
+        },
+        "direction": ["Forward_Vertical"],
+        "maxMoves": { "default": 2 }
       }
-    ]
+    },
+    "rook": {
+      "normalMoves": { "direction": ["Forward_Vertical", "Backward_Vertical"], "maxMoves": { "default": 8 } }
+    }
   }
 }

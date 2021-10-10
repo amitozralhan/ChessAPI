@@ -16,7 +16,7 @@ const pieceSchema = new Schema({
 
 const gameSchema = new Schema({
   currPlayer: { type: String, enum: ["black", "white"], required: true },
-  gameState: [
+  positions: [
     {
       pieceType: {
         type: String,
