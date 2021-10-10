@@ -4,7 +4,7 @@
   "description": "chess api packages",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "start": "nodemon server.js"
   },
   "repository": {
@@ -19,7 +19,11 @@
   "homepage": "https://github.com/amitozralhan/ChessAPI#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "mongoose": "^5.13.10",
-    "nodemon": "^2.0.13"
+    "mongoose": "^5.13.10"
+  },
+  "devDependencies": {
+    "jest": "^27.2.5",
+    "nodemon": "^2.0.13",
+    "supertest": "^6.1.6"
   }
 }

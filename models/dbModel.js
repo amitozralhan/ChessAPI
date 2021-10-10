@@ -1,32 +1,23 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-// schema for an individual piece. Its type, color
+//game holds the current player and the state of the game. Game State is an array of type
+
 const pieceSchema = new Schema({
   pieceType: {
     type: String,
     enum: ["king", "queen", "bishop", "knight", "rook", "pawn"],
     required: true
   },
-  color: { type: String, enum: ["black", "white"], required: true },
-  position: { type: String, required: true }
+  color: { type: String, enum: ["black", "white"], required: true }
 });
-
-//game holds the current player and the state of the game. Game State is an array of type
 
 const gameSchema = new Schema({
   currPlayer: { type: String, enum: ["black", "white"], required: true },
-  positions: [
-    {
-      pieceType: {
-        type: String,
-        enum: ["king", "queen", "bishop", "knight", "rook", "pawn"],
-        required: true
-      },
-      color: { type: String, enum: ["black", "white"], required: true },
-      position: { type: String, required: true }
-    }
-  ]
+  positions: {
+    type: Map,
+    of: pieceSchema
+  }
 });
 
 // gameHistory schema. Implemented as a hook on game collection. Any time the game collection is updated, this object will be populated.
@@ -44,8 +35,10 @@ gameHistorySchema.virtual("game", {
   foreignField: "_id"
 });
 
-gameSchema.pre("findOneAndUpdate", async next => {
+gameSchema.pre("findOneAndUpdate", async function (next) {
   // <TODO> insert logic for game history
+  let data = this._update;
+  console.log({ data });
 });
 
 const game = mongoose.model("game", gameSchema);

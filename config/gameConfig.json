@@ -2,15 +2,134 @@
   "defaultState": {
     "currPlayer": "white",
     "positions": {
-      "pawn": {
-        "white": ["a2", "b2", "c2", "d2", "e2", "f2", "g2", "h2"],
-        "black": ["a7", "b7", "c7", "d7", "e7", "f7", "g7", "h7"]
+      "a2": {
+        "pieceType": "pawn",
+        "color": "white"
       },
-      "king": { "white": ["d1"], "black": ["d8"] },
-      "queen": { "white": ["e1"], "black": ["e8"] },
-      "bishop": { "white": ["c1", "f1"], "black": ["c8", "f8"] },
-      "knight": { "white": ["b1", "g1"], "black": ["b8", "g8"] },
-      "rook": { "white": ["a1", "h1"], "black": ["a8", "h8"] }
+      "b2": {
+        "pieceType": "pawn",
+        "color": "white"
+      },
+      "c2": {
+        "pieceType": "pawn",
+        "color": "white"
+      },
+      "d2": {
+        "pieceType": "pawn",
+        "color": "white"
+      },
+      "e2": {
+        "pieceType": "pawn",
+        "color": "white"
+      },
+      "f2": {
+        "pieceType": "pawn",
+        "color": "white"
+      },
+      "g2": {
+        "pieceType": "pawn",
+        "color": "white"
+      },
+      "h2": {
+        "pieceType": "pawn",
+        "color": "white"
+      },
+      "a7": {
+        "pieceType": "pawn",
+        "color": "black"
+      },
+      "b7": {
+        "pieceType": "pawn",
+        "color": "black"
+      },
+      "c7": {
+        "pieceType": "pawn",
+        "color": "black"
+      },
+      "d7": {
+        "pieceType": "pawn",
+        "color": "black"
+      },
+      "e7": {
+        "pieceType": "pawn",
+        "color": "black"
+      },
+      "f7": {
+        "pieceType": "pawn",
+        "color": "black"
+      },
+      "g7": {
+        "pieceType": "pawn",
+        "color": "black"
+      },
+      "h7": {
+        "pieceType": "pawn",
+        "color": "black"
+      },
+      "d8": {
+        "pieceType": "king",
+        "color": "black"
+      },
+      "d1": {
+        "pieceType": "king",
+        "color": "white"
+      },
+      "e8": {
+        "pieceType": "queen",
+        "color": "black"
+      },
+      "e1": {
+        "pieceType": "queen",
+        "color": "white"
+      },
+      "c8": {
+        "pieceType": "bishop",
+        "color": "black"
+      },
+      "c1": {
+        "pieceType": "bishop",
+        "color": "white"
+      },
+      "f8": {
+        "pieceType": "bishop",
+        "color": "black"
+      },
+      "f1": {
+        "pieceType": "bishop",
+        "color": "white"
+      },
+      "b8": {
+        "pieceType": "knight",
+        "color": "black"
+      },
+      "b1": {
+        "pieceType": "knight",
+        "color": "white"
+      },
+      "g8": {
+        "pieceType": "knight",
+        "color": "black"
+      },
+      "g1": {
+        "pieceType": "knight",
+        "color": "white"
+      },
+      "a8": {
+        "pieceType": "rook",
+        "color": "black"
+      },
+      "a1": {
+        "pieceType": "rook",
+        "color": "white"
+      },
+      "h8": {
+        "pieceType": "rook",
+        "color": "black"
+      },
+      "h1": {
+        "pieceType": "rook",
+        "color": "white"
+      }
     }
   },
 
@@ -21,6 +140,7 @@
     "maxCol": "h"
   },
 
+  "allowedPieceTypes": ["pawn"],
   "moveRules": {
     "pawn": {
       "normalMoves": { "direction": ["Forward_Vertical"], "maxMoves": { "default": 1 } },
