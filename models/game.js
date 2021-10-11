@@ -80,7 +80,7 @@ class Game {
           currRow = pieceAtPos.color === "white" ? currRow + 1 : currRow - 1;
           currCol = currCol.charCodeAt(0); // converting to charcode representations to perform mathematical operations.
           break;
-        case "Backward_Vertical":
+        case "Backward_Vertical": // including this case just to demonstrate how other direction types will be implemented
           currRow = pieceAtPos.color === "white" ? currRow - 1 : currRow + 1;
           currCol = currCol.charCodeAt(0);
           break;
@@ -171,8 +171,8 @@ class Game {
               moveRules[moveType].direction.forEach(dir => {
                 if (processMoveType) {
                   let maxMoves = moveRules[moveType].maxMoves[dir] || moveRules[moveType].maxMoves.default;
-                  let movePerMoveTypePerDir = this.resolveMovePerDirection(dir, maxMoves, currCol, currRow, pieceAtPos, moveType);
-                  movePerMoveTypePerDir.forEach(move => {
+                  let movesPerTypePerDirection = this.resolveMovePerDirection(dir, maxMoves, currCol, currRow, pieceAtPos, moveType);
+                  movesPerTypePerDirection.forEach(move => {
                     if (!potentialMoves.includes(move)) {
                       potentialMovesWithType.push({ pos: move, type: moveType });
                       potentialMoves.push(move);
