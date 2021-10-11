@@ -27,7 +27,11 @@ This nodejs app implements Chess as a Service API. The scope is limited to only 
 
 1. I have included ChessAPI.postman_collection.json inside Postman Collection folder which can be imported into Postman. It has all the API end points configured and ready to test.
 2. Execute "Create New Game". This will create a new game with default state.
-3. Positions are defined in the standard grid system (a1, b8 .. ) as described in instructions. e.g. to check the potential moves for a piece at a2, send the following request: http://{{host}}:{{port}}/api/v1/game/{{gameId}}/allowedMoves/a2
+3. Positions are defined in the standard grid system (a1, b8 .. ) as described in instructions. e.g. to check the potential moves for a piece at a2, send the following request:
+
+```
+http://{{host}}:{{port}}/api/v1/game/{{gameId}}/allowedMoves/a2
+```
 
 # Design
 
