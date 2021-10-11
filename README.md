@@ -33,6 +33,15 @@ This nodejs app implements Chess as a Service API. The scope is limited to only 
 http://{{host}}:{{port}}/api/v1/game/{{gameId}}/allowedMoves/a2
 ```
 
+4. To move a piece, the body of "Update Game" API should be like:
+
+```
+{
+  "startPos": "f2",
+  "endPos": "f3"
+}
+```
+
 # Design
 
 ## Game Logic
