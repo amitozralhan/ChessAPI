@@ -21,7 +21,7 @@ This nodejs app implements Chess as a Service API. The scope is limited to only 
    1. Express
    1. nodemon (dev dependency for hot load of server)
    1. jest and supertest( for integration testing)
-1. Run npm start
+1. Run npm start (app listens are port 3000)
 
 ### How to Use
 
