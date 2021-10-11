@@ -83,7 +83,7 @@ describe("Potential Moves", () => {
       });
       expect(resp.statusCode).toBe(httpStatusCodes.Forbidden);
     });
-    test("Pieces other that pawns cannot be moved", async () => {
+    test("Pieces other than pawns cannot be moved", async () => {
       resp = await request(app).put(`/api/v1/game/${gameId}`).send({
         startPos: "a8",
         endPos: "a7"

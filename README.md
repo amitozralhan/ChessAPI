@@ -25,7 +25,7 @@ This nodejs app implements Chess as a Service API. The scope is limited to only 
 
 ### How to Use
 
-1. ChessAPI.postman_collection inside Postman Collection folder can be imported into Postman. It has all the API end points configured and ready to test.
+1. I have included ChessAPI.postman_collection.json inside Postman Collection folder which can be imported into Postman. It has all the API end points configured and ready to test.
 2. Execute "Create New Game". This will create a new game with default state.
 3. Execute all other end points to test different scenarios.
 
@@ -54,4 +54,4 @@ Note: I have not implemented logic for every possible move.
 
 - dbmodel.js defines the schemas for all Mongo collections used. This ensures data integrity.
 - For every move, only the startPosition and endPosition details are sent to the database. This keeps the data to be updated to a minimum.
-- In order to maintain a history of all the moves, I implemented a "pre" hook on the game collection. So everytime the game gets updated, a new document is inserted into the gameAudit collection.
+- In order to maintain a history of all the moves, I implemented a "pre" hook on the game collection. So everytime the game gets updated, a new document is inserted into the gameAudit collection. This approach has the advantage that we dont need two separate DB calls to maintain the gameState and a history of moves.
