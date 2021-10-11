@@ -52,7 +52,7 @@ This dictionary is then interpretted in the code. The advantage of this design i
     }
 ```
 
-Note: I have not implemented logic for every possible move.
+Note: I have not implemented logic for every possible move. But once a case statement for each direction is defined, then for any variations to the game, only the config file would need to be changed.
 
 ## DB Schema
 
