@@ -1,0 +1,146 @@
+{
+	"info": {
+		"_postman_id": "4301d9e4-eb28-496f-98c7-5807c1372e3a",
+		"name": "ChessAPI",
+		"description": "## Get Game History\n\nPlaceholder API call to retrieve the history of all moves made within a game. Will return a forbidden error code",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create New Game",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let resp = pm.response.json()",
+							"pm.environment.set(\"gameId\",resp._id)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://{{host}}:{{port}}/api/v1/game",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"v1",
+						"game"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Game State",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{host}}:{{port}}/api/v1/game/{{gameId}}",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"v1",
+						"game",
+						"{{gameId}}"
+					]
+				},
+				"description": "## Update Game State\n\nThis end point accepts a start and end position.If its a valid move, then a response of 200 is returned."
+			},
+			"response": []
+		},
+		{
+			"name": "Get Allowed Moves",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{host}}:{{port}}/api/v1/game/{{gameId}}/allowedMoves/{{pos}}",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"v1",
+						"game",
+						"{{gameId}}",
+						"allowedMoves",
+						"{{pos}}"
+					]
+				},
+				"description": "## Create a new game\nThis end point creates a new game with default start state and returns this state with a status code of 200"
+			},
+			"response": []
+		},
+		{
+			"name": "Update Game",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"startPos\":\"b3\",\n    \"endPos\":\"c2\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{host}}:{{port}}/api/v1/game/{{gameId}}",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"v1",
+						"game",
+						"{{gameId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Game History",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{host}}:{{port}}/api/v1/game/{{gameId}}/history",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"v1",
+						"game",
+						"{{gameId}}",
+						"history"
+					]
+				},
+				"description": "## Get Game State\nFetches the latest state for any given gameID. GameID is defined as an environment variable and is set whenever a new game is created."
+			},
+			"response": []
+		}
+	]
+}

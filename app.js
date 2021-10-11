@@ -12,7 +12,7 @@ app.post("/api/v1/game", async (req, res) => {
   try {
     let game = new Game();
     let data = await game.createGame();
-    res.status(200);
+    res.status(httpStatusCodes.OK);
     res.send(data);
   } catch (err) {
     handleError(err, res);
@@ -23,7 +23,7 @@ app.get("/api/v1/game/:gameId", async (req, res) => {
   try {
     let game = new Game(req.params.gameId);
     let data = await game.getGameState();
-    res.status(200);
+    res.status(httpStatusCodes.OK);
     res.send(data);
   } catch (err) {
     handleError(err, res);
@@ -34,7 +34,7 @@ app.put("/api/v1/game/:gameId", async (req, res) => {
   try {
     let game = new Game(req.params.gameId);
     let data = await game.updateGameState(req.body);
-    res.status(200);
+    res.status(httpStatusCodes.OK);
     res.send(data);
   } catch (err) {
     handleError(err, res);
@@ -45,7 +45,7 @@ app.get("/api/v1/game/:gameId/allowedMoves/:pos", async (req, res) => {
   try {
     let game = new Game(req.params.gameId);
     let data = await game.getPotentialMoves(req.params.pos);
-    res.status(200);
+    res.status(httpStatusCodes.OK);
     res.send(data);
   } catch (err) {
     handleError(err, res);
@@ -53,7 +53,8 @@ app.get("/api/v1/game/:gameId/allowedMoves/:pos", async (req, res) => {
 });
 
 app.get("/api/v1/game/:gameId/history", async (req, res) => {
-  res.send("history");
+  res.status(httpStatusCodes.Forbidden);
+  res.send();
 });
 
 const handleError = (err, res) => {

@@ -156,9 +156,6 @@
         "direction": ["Forward_Vertical"],
         "maxMoves": { "default": 2 }
       }
-    },
-    "rook": {
-      "normalMoves": { "direction": ["Forward_Vertical", "Backward_Vertical"], "maxMoves": { "default": 8 } }
     }
   }
 }

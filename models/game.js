@@ -5,23 +5,22 @@ const Db = require("./db");
 class Game {
   constructor(gameId) {
     this.gameId = gameId;
-    this.potentialMoves = [];
+    this.state = {};
   }
 
   getGameState() {
     return new Promise(async (resolve, reject) => {
       try {
         if (!this.gameId) {
-          throw new Error(`gameId required`);
+          throw "Missing_GameID";
         }
-
         let data = await Db.findObject(dbModel.game, { _id: this.gameId });
         if (data.length === 0) {
-          reject(new Error("Invalid game Id"));
+          reject("Invalid_GameID");
         }
         resolve(data);
       } catch (err) {
-        reject(new Error(`Invalid game Id`));
+        reject("Invalid_GameID");
       }
     });
   }
@@ -29,12 +28,15 @@ class Game {
     return new Promise(async (resolve, reject) => {
       try {
         const { startPos, endPos } = positions;
+        if (!(startPos && endPos)) {
+          reject("Missing_Positions");
+        }
         let potentialMovesWithType = await this.getPotentialMoves(startPos);
         let pieceAtStartPos = this.getPieceAtPos(startPos);
 
         if (this.state.currPlayer !== pieceAtStartPos.color) {
           reject("Turn_Error");
-        } else if (!this.potentialMoves.includes(endPos)) {
+        } else if (!potentialMovesWithType.filter(item => item.pos === endPos)[0]) {
           reject("Invalid_Move");
         } else {
           let isAttackMove = false;
@@ -45,10 +47,10 @@ class Game {
               break;
             }
           }
-          this.state.currPlayer = this.state.currPlayer === "white" ? "black" : "white";
-          this.state.positions.set(startPos, null);
-          this.state.positions.set(endPos, pieceAtStartPos);
-          let data = await Db.updateObject(dbModel.game, { _id: this.gameId }, this.state);
+          let updateData = { currPlayer: this.state.currPlayer === "white" ? "black" : "white" };
+          updateData[`positions.${startPos}`] = null;
+          updateData[`positions.${endPos}`] = pieceAtStartPos;
+          let data = await Db.updateObject(dbModel.game, { _id: this.gameId }, updateData);
           resolve(data);
         }
       } catch (err) {
@@ -155,6 +157,7 @@ class Game {
     return new Promise(async (resolve, reject) => {
       try {
         const potentialMovesWithType = [];
+        const potentialMoves = [];
         let gameData = await this.getGameState();
         this.state = gameData[0];
         const pieceAtPos = this.getPieceAtPos(pos);
@@ -170,9 +173,9 @@ class Game {
                   let maxMoves = moveRules[moveType].maxMoves[dir] || moveRules[moveType].maxMoves.default;
                   let movePerMoveTypePerDir = this.resolveMovePerDirection(dir, maxMoves, currCol, currRow, pieceAtPos, moveType);
                   movePerMoveTypePerDir.forEach(move => {
-                    if (!this.potentialMoves.includes(move)) {
+                    if (!potentialMoves.includes(move)) {
                       potentialMovesWithType.push({ pos: move, type: moveType });
-                      this.potentialMoves.push(move);
+                      potentialMoves.push(move);
                     }
                   });
                 }

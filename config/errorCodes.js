@@ -7,5 +7,8 @@ module.exports = {
   Invalid_Move: { status: httpStatusCodes.Forbidden, message: "Move not valid" },
   Update_Game_Error: { status: httpStatusCodes.ServerError, message: "Could not update the game." },
   Invalid_Position: { status: httpStatusCodes.BadRequest, message: "This is an invalid postion for this game." },
-  DB_Error: { status: httpStatusCodes.ServerError, message: "Could not create a new game." }
+  DB_Error: { status: httpStatusCodes.ServerError, message: "Could not create a new game." },
+  Missing_Positions: { status: httpStatusCodes.BadRequest, message: "Missing on Invalid positions" },
+  Missing_GameID: { status: httpStatusCodes.BadRequest, message: "Missing GameID" },
+  Invalid_GameID: { status: httpStatusCodes.BadRequest, message: "Invalid GameID" }
 };
